@@ -10,6 +10,9 @@ button {
 input,
 select,
 textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
   font: inherit;
   color: var(--text-h);
   background: var(--surface);
@@ -102,6 +105,11 @@ button:focus-visible {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-bottom: 10px;
+}
+
+.chip-row:last-child {
+  margin-bottom: 0;
 }
 
 .chip {
@@ -145,8 +153,6 @@ button:focus-visible {
 }
 
 .session-notes {
-  width: 100%;
-  box-sizing: border-box;
   resize: vertical;
 }
 
