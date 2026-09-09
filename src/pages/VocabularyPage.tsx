@@ -3,7 +3,7 @@ import { Chip } from '../components/Chip'
 import { LanguageChip } from '../components/LanguageChip'
 import { Section } from '../components/Section'
 import { useAuth } from '../context/AuthContext'
-import { LANGUAGES, LANGUAGE_BY_ID, SUBJECTS } from '../lib/constants'
+import { LANGUAGES, SUBJECTS } from '../lib/constants'
 import type { LanguageId } from '../lib/constants'
 import { downloadCsv, printTableAsPdf } from '../lib/export'
 import { useVocabulary } from '../lib/useVocabulary'
@@ -69,15 +69,8 @@ export function VocabularyPage() {
 
   const handleExportCsv = () => {
     const rows = [
-      ['Word', 'Reading', 'Myanmar', 'Language', 'Subject', 'Remembered'],
-      ...filteredEntries.map((e) => [
-        e.word,
-        e.reading ?? '',
-        e.myanmar_translation ?? '',
-        LANGUAGE_BY_ID[e.language].label,
-        e.subject,
-        e.remembered ? 'Yes' : 'No',
-      ]),
+      ['Word', 'Reading', 'Myanmar'],
+      ...filteredEntries.map((e) => [e.word, e.reading ?? '', e.myanmar_translation ?? '']),
     ]
     downloadCsv('vocabulary.csv', rows)
   }
@@ -85,15 +78,8 @@ export function VocabularyPage() {
   const handleExportPdf = () => {
     printTableAsPdf(
       'Vocabulary List',
-      ['Word', 'Reading', 'Myanmar', 'Language', 'Subject', 'Remembered'],
-      filteredEntries.map((e) => [
-        e.word,
-        e.reading ?? '',
-        e.myanmar_translation ?? '',
-        LANGUAGE_BY_ID[e.language].label,
-        e.subject,
-        e.remembered ? 'Yes' : 'No',
-      ]),
+      ['Word', 'Reading', 'Myanmar'],
+      filteredEntries.map((e) => [e.word, e.reading ?? '', e.myanmar_translation ?? '']),
     )
   }
 
